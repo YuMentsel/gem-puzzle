@@ -1,0 +1,129 @@
+@import 'libs/normalize.css';
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/montserrat-v23-latin_cyrillic-regular.woff2') format('woff2'),
+    url('fonts/montserrat-v23-latin_cyrillic-regular.woff') format('woff');
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Montserrat';
+  color: #fff;
+  background: url(./assets/images/background.jpg) center center / cover
+    no-repeat;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  width: 440px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  user-select: none;
+}
+
+h1 {
+  margin: 0;
+}
+
+.btn-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.btn {
+  background: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 10px 17px;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 900;
+  box-shadow: inset rgba(0, 0, 0, 0.8) -2px -2px 2px;
+  outline: none;
+  cursor: pointer;
+  transition: 0.5s;
+  &:hover {
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
+    background: #ff0000;
+  }
+}
+
+.info {
+  display: flex;
+  font-size: 24px;
+  gap: 30px;
+}
+
+.fifteen {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  border: solid 5px rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.tile {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 4 - 1%);
+  height: calc(100% / 4 - 1%);
+  border-radius: 5px;
+  background: rgb(240, 240, 240);
+  box-shadow: inset rgba(0, 0, 0, 0.8) -3px -3px 2px;
+  cursor: pointer;
+  transition: 1s;
+  &__num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 82%;
+    height: 82%;
+    box-shadow: inset 0 0 0 3px #000;
+    font-size: 3em;
+    font-weight: 700;
+    color: #000;
+    transition: 0.4s;
+    &:hover {
+      color: #ff0000;
+      box-shadow: inset 0 0 0 3px #ff0000;
+    }
+  }
+}
+
+.sizes {
+  font-size: 20px;
+  display: flex;
+  gap: 10px;
+  .size {
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      color: #ff0000;
+    }
+  }
+}
+
+.none {
+  display: none;
+}
+
+.active {
+  color: #ff0000;
+}

@@ -10,7 +10,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   font-family: 'Montserrat';
   color: #fff;
   background: url(./assets/images/background.jpg) center center / cover
@@ -21,13 +21,14 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 30px;
+  gap: 25px;
   align-items: center;
   width: 440px;
   margin: 0 auto;
   padding: 20px;
   text-align: center;
   user-select: none;
+  overflow: hidden;
 }
 
 h1 {
@@ -42,11 +43,13 @@ h1 {
   gap: 8px;
   flex-wrap: wrap;
 }
+
 .btn {
   background: #ff0000;
   color: #fff;
   border: none;
-  padding: 10px 17px;
+  padding: 0 15px 0 12px;
+  height: 40px;
   border-radius: 3px;
   text-align: center;
   text-decoration: none;
@@ -57,22 +60,69 @@ h1 {
   transition: 0.5s;
   &:hover {
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
-    background: #ff0000;
   }
 }
 
-.info {
-  display: flex;
-  font-size: 24px;
-  gap: 30px;
+.sound {
+  margin-bottom: 5px;
+  width: 38px;
+  box-shadow: none;
+  background: transparent center center no-repeat;
+  background-image: url('./assets/icons/sound_on.svg');
 }
 
-.fifteen {
+.off {
+  background-image: url('./assets/icons/sound_off.svg');
+}
+
+.info {
+  position: relative;
+  display: flex;
+  width: 100%;
+  font-size: 24px;
+}
+
+.timer {
+  position: absolute;
+  left: 50%;
+}
+
+.puzzle {
   position: relative;
   width: 100%;
   padding-bottom: 100%;
   border: solid 5px rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.5);
+
+  &__overlay {
+    position: absolute;
+    top: -1%;
+    left: -1%;
+    width: 102%;
+    height: 102%;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.95);
+  }
+  &__won,
+  &__startMessage {
+    position: absolute;
+    width: 50%;
+    padding: 15px 10px 22px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    background: #ff0000;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.2;
+    box-shadow: inset rgba(0, 0, 0, 0.8) -2px -2px 2px;
+    border-radius: 3px;
+    span {
+      font-size: 12px;
+      color: #ff9f8f;
+    }
+  }
 }
 
 .tile {
@@ -82,48 +132,112 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: calc(100% / 4 - 1%);
-  height: calc(100% / 4 - 1%);
+  width: calc(100% / 4 - 0.4%);
+  height: calc(100% / 4 - 0.4%);
+  font-size: 2.5rem;
   border-radius: 5px;
-  background: rgb(240, 240, 240);
+  background: linear-gradient(
+    150deg,
+    rgb(255, 255, 255) 20%,
+    rgb(145, 145, 145) 100%
+  );
   box-shadow: inset rgba(0, 0, 0, 0.8) -3px -3px 2px;
   cursor: pointer;
-  transition: 1s;
+  &:last-child {
+    cursor: default;
+  }
   &__num {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 82%;
-    height: 82%;
-    box-shadow: inset 0 0 0 3px #000;
-    font-size: 3em;
+    width: 76%;
+    height: 76%;
+    border-radius: 50%;
+    background: linear-gradient(
+      350deg,
+      rgb(255, 255, 255) 20%,
+      rgb(145, 145, 145) 100%
+    );
     font-weight: 700;
     color: #000;
-    transition: 0.4s;
-    &:hover {
-      color: #ff0000;
-      box-shadow: inset 0 0 0 3px #ff0000;
-    }
+  }
+}
+
+.tile.active {
+  background: linear-gradient(150deg, rgb(255, 0, 0) 20%, rgb(163, 0, 0) 100%);
+  div {
+    background: linear-gradient(
+      350deg,
+      rgb(255, 0, 0) 20%,
+      rgb(163, 0, 0) 100%
+    );
   }
 }
 
 .sizes {
   font-size: 20px;
   display: flex;
-  gap: 10px;
+  gap: 30px;
   .size {
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.2s;
     &:hover {
-      color: #ff0000;
+      transform: scale(1.25);
     }
   }
+  .active {
+    color: #ff0000;
+    transform: scale(1.5);
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+}
+
+.hidden {
+  opacity: 0;
 }
 
 .none {
   display: none;
 }
 
-.active {
-  color: #ff0000;
+.red-hover {
+  &:active {
+    background-color: #ff0000;
+  }
+}
+
+.saved {
+  color: rgb(255, 200, 0);
+}
+
+@media (max-width: 450px) {
+  .game {
+    gap: 15px;
+    width: 100%;
+  }
+  .info {
+    font-size: 22px;
+  }
+  .puzzle__won {
+    width: 80%;
+  }
+  .sizes {
+    font-size: 16px;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 350px) {
+  .info {
+    font-size: 18px;
+  }
+  .puzzle__won {
+    width: 80%;
+  }
+  .sizes {
+    font-size: 14px;
+    gap: 15px;
+  }
 }

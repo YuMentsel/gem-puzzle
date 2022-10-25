@@ -35,6 +35,9 @@ export const puzzle = document.createElement('div');
 export const puzzleOverlay = document.createElement('div');
   puzzleOverlay.className = 'puzzle__overlay';
 
+export const scoreOverlay = document.createElement('div');
+  scoreOverlay.className = 'puzzle__overlay none';
+
 export const won = document.createElement('div');
   won.className = 'puzzle__won none';
 
@@ -51,5 +54,61 @@ export const sizesWrapper = document.createElement('div');
     <span class="size">7x7</span>
     <span class="size">8x8</span>`;
 
+export const scoresArea = document.createElement('div');
+  scoresArea.classList.add('puzzle__scores', 'none');
+
+export const close = document.createElement('div');
+  close.classList.add('close', 'none');
+  close.innerHTML = `&times;`
+  puzzle.prepend(close);
+
+  for (let i = 0; i < 10; i++){
+  const position = document.createElement('div');
+  position.classList.add('position');
+
+  const numTop = document.createElement('div');
+  numTop.classList.add('position__num');
+  numTop.textContent = `${i + 1}`
+  position.append(numTop);
+
+  const sizeTop = document.createElement('div');
+  sizeTop.classList.add('position__size');
+  position.append(sizeTop);
+
+  const movesTop = document.createElement('div');
+  movesTop.classList.add('position__moves');
+  position.append(movesTop);
+
+  const timeTop = document.createElement('div');
+  timeTop.classList.add('position__time');
+  position.append(timeTop);
+
+  scoresArea.append(position);
+}
+
+const scoresTitle = document.createElement('div');
+scoresTitle.classList.add('position', 'scores__title');
+scoresArea.prepend(scoresTitle);
+
+const numTop = document.createElement('div');
+numTop.innerText = '#';
+numTop.classList.add('position__num');
+
+const sizeTop = document.createElement('div');
+sizeTop.innerText = 'Size';
+sizeTop.classList.add('position__size');
+
+const movesTop = document.createElement('div');
+movesTop.innerText = 'Moves';
+movesTop.classList.add('position__moves');
+
+const timeTop = document.createElement('div');
+timeTop.innerText = 'Time';
+timeTop.classList.add('position__time');
+
+scoresTitle.append(numTop, sizeTop, movesTop, timeTop);
+
 game.append(title, btnWrapper, info, puzzle, sizesWrapper);
-puzzle.append(puzzleOverlay, startMessage, won);
+puzzle.append(puzzleOverlay, scoreOverlay, startMessage, won, scoresArea);
+
+export const btns = btnWrapper.querySelectorAll('.btn');

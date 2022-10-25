@@ -1,14 +1,14 @@
-import { puzzleOverlay, timer, won, btnWrapper } from './createPage';
+import { puzzleOverlay, timer, won, btns } from './createPage';
 import { resetMoves, findCell, canReplace, replacePosition, removeStartMessage } from './replacePosition';
-import { matrix, returnMatrix, tilesCount, setPositionTiles, createTiles } from './setPosition';
+import { matrix, returnMatrix, tilesCount, setPositionTiles } from './setPosition';
 import { startTimer, removeTimer } from './timer';
-
-export const btns = btnWrapper.querySelectorAll('.btn');
+import { hiddenScoreStart } from './createScore'
 
 btns[0].addEventListener('click', shufflePuzzle);
 btns[1].addEventListener('click', shufflePuzzle);
 
 export function shufflePuzzle(e) {
+  hiddenScoreStart();
   removeStartMessage();
   returnMatrix();
   timer.innerHTML = `Time: 00:00`

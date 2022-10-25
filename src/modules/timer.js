@@ -5,7 +5,6 @@ export let time;
 let timerInterval;
 
 export function startTimer() {
-  // removeTimer();
   timerInterval = setInterval(function () {
     timeCounter += 1;
     getTime();

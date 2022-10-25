@@ -1,4 +1,6 @@
-import { puzzle, sizesWrapper } from './createPage';
+import { puzzle, sizesWrapper, timer } from './createPage';
+import { showStartMessage } from './replacePosition';
+import { removeTimer } from './timer';
 
 export let tilesCount = 16;
 
@@ -64,7 +66,7 @@ setPositionTiles(matrix);
 
 // Размер поля
 
-const sizes = sizesWrapper.querySelectorAll('.size');
+export const sizes = sizesWrapper.querySelectorAll('.size');
 
 sizes[0].addEventListener('click', () => changeSize (9, 100 / 3 - 0.5, 3.5));
 sizes[1].addEventListener('click', () => changeSize (16, 100 / 4 - 0.4, 2.5));
@@ -76,13 +78,16 @@ sizes[5].addEventListener('click', () => changeSize (64, 100 / 8 - 0.25, 1));
 sizesWrapper.addEventListener('click', changeActive);
 
 function changeActive(e) {
+  showStartMessage();
+  removeTimer();
+  timer.innerHTML = `Time: 00:00`;
   sizes.forEach((size) => {
     size.classList.remove('active');
   })
   e.target.classList.add('active');
 }
 
-function changeSize(count, width, font ) {
+export function changeSize(count, width, font ) {
   tiles.forEach((item) => {
     item.remove();
   })

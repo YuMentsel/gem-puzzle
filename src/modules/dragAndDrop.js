@@ -1,5 +1,5 @@
-import { emptyTile, tiles, tilesCount } from './setPosition';
-import { replacePossition, emptyCell } from './replacePosition';
+import { emptyTile } from './setPosition';
+import { btns, replacePossition } from './replacePosition';
 import { puzzle } from './createPage';
 
 export let selectedTile;
@@ -16,7 +16,6 @@ puzzle.addEventListener('dragstart', (e) => {
   }, 0);
 });
 
-
 document.addEventListener('dragend', () => {
   selectedTile.classList.remove('hidden');
 });
@@ -27,5 +26,3 @@ document.addEventListener('drop', (e) => {
     selectedTile.classList.remove('hidden');
   }
 });
-
-

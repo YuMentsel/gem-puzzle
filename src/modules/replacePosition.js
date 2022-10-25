@@ -1,7 +1,8 @@
-import { matrix, tiles, tilesNum, tilesCount, setPositionTiles } from './setPosition';
+import { matrix, tilesNum, tilesCount, setPositionTiles } from './setPosition';
 import { movesInfo, puzzle, puzzleOverlay, startMessage, won } from './createPage';
 import { time, stopTimer } from './timer';
 import { audio } from './audio';
+import { createScore } from './createScore'
 
 export let moves = 0;
 
@@ -25,6 +26,7 @@ export function replacePossition(tile) {
     audio.play();
     if(isWon()) {
       showWonMessage();
+      createScore();
     }
     tile.classList.add('active');
     setTimeout(() => tile.classList.remove('active'), 400);
@@ -82,25 +84,27 @@ function showWonMessage() {
     <span>Press Start or Cheat & play again.</span>`;
     won.classList.remove('none');
     stopTimer();
-  }, 200);
+  }, 50);
 }
 
 export function removeStartMessage() {
   setTimeout(() => {
     puzzleOverlay.classList.add('none');
-    startMessage.textContent = `
-    Press Start to play!`;
+    startMessage.innerHTML = `
+    Press Start to play!
+    <span>You also can press Cheat or Load</span>`;
     startMessage.classList.add('none');
-  }, 200);
+  }, 50);
 }
 
 export function showStartMessage() {
   setTimeout(() => {
     puzzleOverlay.classList.remove('none');
-    startMessage.textContent = `
-    Press Start to play!`;
+    startMessage.innerHTML = `
+    Press Start to play!
+    <span>You also can press Cheat or Load</span>`;
     startMessage.classList.remove('none');
-  }, 200);
+  }, 50);
 }
 
 showStartMessage();

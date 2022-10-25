@@ -264,9 +264,12 @@ h1 {
   }
   .puzzle {
     &__won,
-    &__startMessage,
-    &__scores {
+    &__startMessage {
       width: 70%;
+      font-size: 16px;
+    }
+    &__scores {
+      font-size: 16px;
     }
   }
   .sizes {
@@ -281,9 +284,11 @@ h1 {
   }
   .puzzle {
     &__won,
-    &__startMessage,
-    &__scores {
+    &__startMessage {
       width: 80%;
+    }
+    &__scores {
+      font-size: 12px;
     }
   }
   .sizes {

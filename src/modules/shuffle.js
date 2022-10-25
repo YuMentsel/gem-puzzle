@@ -22,7 +22,7 @@ export function shufflePuzzle(e) {
   setTimeout(function () {
     puzzleOverlay.classList.add('none');
     won.classList.add('none');
-  }, 200);
+  }, 50);
   resetMoves();
   removeTimer();
   startTimer();

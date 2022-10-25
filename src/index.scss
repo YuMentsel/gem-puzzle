@@ -262,8 +262,12 @@ h1 {
   .info {
     font-size: 22px;
   }
-  .puzzle__won {
-    width: 80%;
+  .puzzle {
+    &__won,
+    &__startMessage,
+    &__scores {
+      width: 70%;
+    }
   }
   .sizes {
     font-size: 16px;
@@ -275,8 +279,12 @@ h1 {
   .info {
     font-size: 18px;
   }
-  .puzzle__won {
-    width: 80%;
+  .puzzle {
+    &__won,
+    &__startMessage,
+    &__scores {
+      width: 80%;
+    }
   }
   .sizes {
     font-size: 14px;

@@ -92,7 +92,7 @@ export function removeStartMessage() {
     puzzleOverlay.classList.add('none');
     startMessage.innerHTML = `
     Press Start to play!
-    <span>You also can press Cheat or Load</span>`;
+    <br><span>You can press Cheat or Load</span>`;
     startMessage.classList.add('none');
   }, 50);
 }
@@ -102,7 +102,7 @@ export function showStartMessage() {
     puzzleOverlay.classList.remove('none');
     startMessage.innerHTML = `
     Press Start to play!
-    <span>You also can press Cheat or Load</span>`;
+    <br><span>You can press Cheat or Load</span>`;
     startMessage.classList.remove('none');
   }, 50);
 }
